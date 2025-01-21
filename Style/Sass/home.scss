@@ -1,0 +1,232 @@
+.jn_header{
+    &_content{
+        position: relative;
+        margin: 0 auto;
+        margin-top: 50px;
+        width: 80%;
+    }
+    &_logo{
+        font-family: "Lora", serif;
+        font-size: 120px;
+        @media (max-width: 1024px){
+            font-size: 80px;
+        }
+        @media (max-width: 700px){
+            font-size: 60px;
+        }
+    }
+   /* &_option_contrast{
+        font-size: 20px;
+        font-weight: normal;
+        position: fixed;
+        right: 20px;
+        top: 105px;
+        margin-top: 10px;
+        transform: rotate(-90deg);
+        -webkit-transform: rotate(-90deg);
+        -ms-transform: rotate(-90deg);
+        -webkit-transform-origin: right, top;
+        -ms-transform-origin: right, top;
+        z-index: 3;
+        @media (max-width: 700px){
+            right: 10px;
+            font-size: 18px;
+        }
+        span{
+            cursor: pointer;
+        }
+        .active{
+            font-weight: bold;
+            border-bottom: 2px solid #000;
+            &:hover{
+                border-color: transparent;
+            }
+        }
+    }*/
+
+
+}
+.jn_bio{
+    position: relative;
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 250px;
+    padding: 30px;
+    border: 2px solid #fff4f4;
+    border-radius: 30px;
+    box-shadow: 25px 10px 10px #9E9E9E;
+    &_p_content{
+        width: 80%;
+        @media (max-width: 700px){
+            width: 90%;
+        }
+    }
+    p{
+        font-size: 40px;
+        line-height: 50px;
+        margin-bottom: 50px;
+        @media(max-width:1024px){
+            font-size: 25px;
+            line-height: 35px;
+            width: 100%;            
+        }
+        @media(max-width: 700px){
+            font-size: 18px;
+            line-height: 27px;
+        }
+    }
+}
+
+.jn_section_works {
+    background-color: #000;
+    width: 100%;
+    position: relative;
+    margin-top: 200px;
+    padding: 30px;
+    
+    @media (max-width:1024px){
+        padding: 10px;
+
+    }
+    &_content{
+        position: relative;
+        width: 80%;
+        margin: 0 auto;
+        margin-top: 50px;
+    }
+    .title_works{
+        font-size: 120px;
+        color: white;
+        font-family: "Lora", serif;
+        margin-bottom: 50px;
+        @media(max-width:1024px){
+            font-size: 80px;
+        }
+        @media(max-width:700px){
+            font-size: 60px;
+        }
+
+    }
+    .jn_works_slider{
+        text-align: center;
+        &_item{
+            position: relative;
+            &_content{
+                margin: 20px;
+                &_thumb {
+                    border: 2px solid #fff;
+                    width: 650px;
+                    margin: 0 auto;
+                    @media(max-width:1024px){
+                        width: 550px;
+                    }
+                    @media(max-width: 768px){
+                        width: 450px;
+                    }
+                }
+            }
+            
+        }
+        &_img_info{
+            text-align: center;
+            h2{
+                font-family: "Lora", serif;
+                font-size: 35px;
+                line-height: 40px;
+                margin-top: 30px;
+                margin-bottom: 10px;
+                color: white;
+
+            }
+            p{
+                font-size: 15px;
+                line-height: 20px;
+                margin-top: 30px;
+                color: white;
+            }
+        }
+      
+    }
+    
+}
+.jn_bio_additional{
+    position: relative;
+    margin: 0 auto;
+    width: 80%;
+    margin-top: 300px;
+    &_p{
+        width: 80%;
+        @media(max-width: 700px){
+            width: 90%;
+        }
+    }
+    p{
+        font-family: "Lora", serif;
+        font-size: 40px;
+        line-height: 50px;
+        margin-bottom: 50px;
+        @media (max-width: 1024px) {
+            font-size: 25px;
+            line-height: 35px;
+            width: 100%;
+            
+        }
+        @media (max-width: 700px) {
+            font-size: 18px;
+            line-height: 27px;
+            width: 100%;
+            
+        }
+    }
+    
+}
+.pf_contact{
+    position: relative;
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 300px;
+    &_content{
+        width: 80%;
+        span{
+            font-weight: bold;
+        }
+        @media(max-width: 700px){
+            width: 90%;
+        }
+    }
+    &_tittle{
+        font-size: 120px;
+        font-family: "Lora", serif;
+        margin-bottom: 120px;
+        @media(max-width: 1024px){
+            font-size: 80px;
+        }
+        @media(max-width: 700px){
+            font-size: 60px;
+        }
+    }
+    p{
+        font-size: 40px;
+        line-height: 50px;
+        margin-bottom: 50px;
+        
+        @media(max-width: 1024px){
+            font-size: 25px;
+            line-height: 35px;
+        }
+        @media(max-width: 700px){
+            font-size: 18px;
+            line-height: 27px;
+        }
+    }
+    
+}
+.pf_footer{
+    &_content{
+        position: relative;
+        width: 80%;
+        margin: 0 auto;
+        margin-top: 200px;
+        margin-bottom: 30px;
+    }
+}
