@@ -13,7 +13,7 @@ const conexion = mysql.createConnection({
     database: "suspension",
     port: 3306
 })
-
+/*
 app.get("/vehiculos", (req, res) => {
     conexion.query("select * from vehiculos", (err, response) => {
         if (err) {
@@ -24,11 +24,20 @@ app.get("/vehiculos", (req, res) => {
         console.log("Conexión exitosa", response);
         res.json(response);
     })
-})
-app.post("/marca", (req, res) => {
-    let text = req.body.marca;
+})*/
 
-    res.status(200).json({ message: "Marca recivida con exito:" });
+app.post("/marca", (req, res) => {
+    let marca = req.body.marca;
+    if (marca == "Toyota") {
+        conexion.query("select * from vehiculos where marca = 'Toyota'", (err, response) => {
+            if (err) {
+                console.log("error en la consulta", response);
+                return res.status(500).json({ message: "error al enviar los datos" });
+            }
+            res.status(200).json(response);
+        })
+    }
+    //honda
 
 })
 
