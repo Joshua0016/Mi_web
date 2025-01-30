@@ -40,6 +40,10 @@ app.post("/marca", (req, res) => {
     //honda
 
 })
+app.post("/year", (req, res) => {
+    let año = req.body.id;
+    res.status(500).json(año);
+})
 
 const port = 3000;
 app.listen(port, () => {
