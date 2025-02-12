@@ -28,6 +28,7 @@ app.get("/vehiculos", (req, res) => {
 
 app.post("/marca", (req, res) => {
     let marca = req.body.marca;
+    //toyota
     if (marca == "Toyota") {
         conexion.query("select * from vehiculos where marca = 'Toyota'", (err, response) => {
             if (err) {
@@ -41,8 +42,16 @@ app.post("/marca", (req, res) => {
 
 })
 app.post("/year", (req, res) => {
-    let año = req.body.id;
-    res.status(500).json(año);
+    let id = req.body.id;
+    conexion.query(`select modelosaños.año from vehiculos left join modelosaños on modelosaños.modeloID = vehiculos.id where modelosaños.modeloID = ${id}`, (err, response) => {
+        if (err) {
+            console.log("error al realizar la consulta", err);
+            conexion.end();
+            return res.status(500).json(response);
+        }
+        res.json(response);
+    })
+
 })
 
 const port = 3000;
