@@ -2,7 +2,7 @@
     background-color: black;
     padding: 15px;
     margin-top: 200px;
-    height: 500px;
+    height: 800px;
     @media (max-width:1024px){
         height: 900px;
 
@@ -21,6 +21,22 @@
             font-size: 45px;
         }
     }
+    .content_referencia{
+        text-align: center;
+        margin: 0 auto;
+        width: 80%;
+        height: 300px;
+        margin-top: 200px;
+        background-color: beige;
+        border-radius: 20px;
+        @media(max-width: 1024px){
+            margin-top: 0;
+            height: 180px;
+        }
+        @media(max-width:608px){
+            height: 150px;
+        }
+    }
 
    }
 
@@ -35,6 +51,11 @@
         align-items: center;
                 
     }
+
+   
    
      
+}
+p{
+    color: black;
 }
