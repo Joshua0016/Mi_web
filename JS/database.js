@@ -35,6 +35,7 @@ app.post("/marca", (req, res) => {
                 console.log("error en la consulta", response);
                 return res.status(500).json({ message: "error al enviar los datos" });
             }
+
             res.status(200).json(response);
         })
     }
@@ -43,15 +44,30 @@ app.post("/marca", (req, res) => {
 })
 app.post("/year", (req, res) => {
     let id = req.body.id;
-    conexion.query(`select modelosaños.año from vehiculos left join modelosaños on modelosaños.modeloID = vehiculos.id where modelosaños.modeloID = ${id}`, (err, response) => {
+
+    conexion.query(`select modelosaños.año, modelosaños.id from vehiculos left join modelosaños on modelosaños.modeloID = vehiculos.id where modelosaños.modeloID = ${id};`, (err, response) => {
         if (err) {
             console.log("error al realizar la consulta", err);
-            conexion.end();
-            return res.status(500).json(response);
+
+            return res.status(500).json(err);
         }
         res.json(response);
     })
 
+})
+
+app.post("/referencia", (req, res) => {
+    let id = req.body.id;
+    conexion.query(`select * from balljoints b left join modelosaños on modelosaños.id = b.añoID where modelosaños.id = ${id};`, (err, response) => {
+        if (err) {
+            console.log("error al realizar la consulta", err);
+
+            return res.status(500).json(err);
+        }
+
+        res.json(response);
+
+    })
 })
 
 const port = 3000;
