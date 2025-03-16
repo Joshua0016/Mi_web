@@ -44,6 +44,7 @@ $(function () {
 
             modeloInfo = data;
 
+
         }
         catch (err) {
             console.log("Error al eviar los datos de la base de datos", err);
@@ -93,6 +94,7 @@ $(function () {
     $("#año").on("change", async function (event) {
         let año = event.target.options[event.target.selectedIndex].text;
         let añoSelect = añoInfo.find((info) => info.año == año);
+        console.log(añoSelect);
 
 
 
@@ -116,10 +118,14 @@ $(function () {
             ul.textContent = "";
 
             dataInfo.forEach((info) => {
+
                 let li = document.createElement("li");
+
+
                 switch (data[0][info]) {
                     case null:
                         break;
+
 
                     default: {
                         li.textContent = data[0][info];
@@ -127,7 +133,6 @@ $(function () {
                         ul.appendChild(li);
                         break;
                     }
-
                 }
             })
 

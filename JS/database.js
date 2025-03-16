@@ -13,18 +13,17 @@ const conexion = mysql.createConnection({
     database: "suspension",
     port: 3306
 })
-/*
-app.get("/vehiculos", (req, res) => {
-    conexion.query("select * from vehiculos", (err, response) => {
-        if (err) {
-            console.log("Error al realizar la consulta");
-            return res.status(500).json({ Error: "Error al realizar la consulta" });
-        }
 
-        console.log("Conexión exitosa", response);
-        res.json(response);
-    })
-})*/
+conexion.connect((err) => {
+    if (err) {
+        console.error("Error al conectar con la base de datos", err.stack);
+        return;
+    }
+    else {
+        console.log("Exito al realizar la conexión a la base de datos", conexion.threadId);
+    }
+})
+
 
 app.post("/marca", (req, res) => {
     let marca = req.body.marca;
@@ -40,6 +39,15 @@ app.post("/marca", (req, res) => {
         })
     }
     //honda
+    if (marca == "Honda") {
+        conexion.query("Select * from vehiculos where marca = 'Honda'", (err, response) => {
+            if (err) {
+                console.log("Error al realizar la consulta");
+                return res.status(500).json({ message: "Error al realizar la consulta en la DATA BASE" });
+            }
+            res.json(response);
+        })
+    }
 
 })
 app.post("/year", (req, res) => {

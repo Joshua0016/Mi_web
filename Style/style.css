@@ -447,8 +447,8 @@ a {
 .ct_suspension_content .content_referencia {
   text-align: center;
   margin: 0 auto;
-  width: 80%;
-  height: 300px;
+  width: 60%;
+  height: 200px;
   margin-top: 200px;
   background-color: beige;
   border-radius: 20px;
@@ -463,6 +463,11 @@ a {
   .ct_suspension_content .content_referencia {
     height: 150px;
   }
+}
+.ct_suspension_content .content_referencia .ul {
+  line-height: 25px;
+  margin-top: 35px;
+  font-family: "Lora", "serif";
 }
 
 .selectores_content {
@@ -480,6 +485,8 @@ a {
 
 p {
   color: black;
+  font-family: "Lora", "serif";
+  margin-top: 15px;
 }
 
 /*# sourceMappingURL=style.css.map */

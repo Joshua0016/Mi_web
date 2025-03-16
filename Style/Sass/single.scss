@@ -24,8 +24,8 @@
     .content_referencia{
         text-align: center;
         margin: 0 auto;
-        width: 80%;
-        height: 300px;
+        width: 60%;
+        height: 200px;
         margin-top: 200px;
         background-color: beige;
         border-radius: 20px;
@@ -35,6 +35,11 @@
         }
         @media(max-width:608px){
             height: 150px;
+        }
+        .ul{
+            line-height: 25px;
+            margin-top: 35px;
+            font-family: "Lora", "serif";
         }
     }
 
@@ -58,4 +63,6 @@
 }
 p{
     color: black;
+    font-family: "Lora", "serif";
+    margin-top: 15px;
 }
