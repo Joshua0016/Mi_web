@@ -27,27 +27,16 @@ conexion.connect((err) => {
 
 app.post("/marca", (req, res) => {
     let marca = req.body.marca;
-    //toyota
-    if (marca == "Toyota") {
-        conexion.query("select * from vehiculos where marca = 'Toyota'", (err, response) => {
-            if (err) {
-                console.log("error en la consulta", response);
-                return res.status(500).json({ message: "error al enviar los datos" });
-            }
 
-            res.status(200).json(response);
-        })
-    }
-    //honda
-    if (marca == "Honda") {
-        conexion.query("Select * from vehiculos where marca = 'Honda'", (err, response) => {
-            if (err) {
-                console.log("Error al realizar la consulta");
-                return res.status(500).json({ message: "Error al realizar la consulta en la DATA BASE" });
-            }
-            res.json(response);
-        })
-    }
+    conexion.query(`select * from vehiculos where marca = '${marca}'`, (err, response) => {
+        if (err) {
+            console.log("error en la consulta", response);
+            return res.status(500).json({ message: "error al enviar los datos" });
+        }
+
+        res.status(200).json(response);
+    })
+
 
 })
 app.post("/year", (req, res) => {
