@@ -23,6 +23,7 @@ $(function () {
         let Infomarca = event.target.options[event.target.selectedIndex].text;
         $("#modelo").prop("disabled", false);
         ul.textContent = "";
+        año.textContent = "";
 
 
 
