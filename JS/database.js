@@ -30,8 +30,11 @@ app.post("/marca", (req, res) => {
 
     conexion.query(`select * from vehiculos where marca = '${marca}'`, (err, response) => {
         if (err) {
-            console.log("error en la consulta", response);
-            return res.status(500).json({ message: "error al enviar los datos" });
+            console.log("error en la consulta", err);
+            return res.status(500).json({
+                message: "error al procesar la solicitud",
+                error: err.code
+            });
         }
 
         res.status(200).json(response);
@@ -39,14 +42,17 @@ app.post("/marca", (req, res) => {
 
 
 })
-app.post("/year", (req, res) => {
+app.post("/modelo", (req, res) => {
     let id = req.body.id;
 
     conexion.query(`select modelosaños.año, modelosaños.id from vehiculos left join modelosaños on modelosaños.modeloID = vehiculos.id where modelosaños.modeloID = ${id};`, (err, response) => {
         if (err) {
             console.log("error al realizar la consulta", err);
 
-            return res.status(500).json(err);
+            return res.status(500).json({
+                message: "Error en la consulta de años",
+                error: err.code
+            });
         }
         res.json(response);
     })
@@ -59,7 +65,10 @@ app.post("/referencia", (req, res) => {
         if (err) {
             console.log("error al realizar la consulta", err);
 
-            return res.status(500).json(err);
+            return res.status(500).json({
+                message: "error en la solicitud de referencia",
+                error: err.code
+            });
         }
 
         res.json(response);

@@ -1,7 +1,7 @@
 $(function () {
-    const modelo = document.getElementById("modelo");
-    const año = document.getElementById("año");
-    const ul = document.getElementById("ul");
+    const modeloLista = document.getElementById("modelo");
+    const añoLista = document.getElementById("año");
+    const listaRef = document.getElementById("listaRef");
 
     let modeloInfo = null;
     let añoInfo = null;
@@ -20,27 +20,32 @@ $(function () {
 
     //Primer evento select
     $("#marca").on("change.select2", async function (event) {
-        let Infomarca = event.target.options[event.target.selectedIndex].text;
+        let Infomarca = event.target.options[event.target.selectedIndex].text;//cargar el texto seleccionado
         $("#modelo").prop("disabled", false);
-        ul.textContent = "";
-        año.textContent = "";
+        //reiniciar listas
+        listaRef.textContent = "";
+        añoLista.textContent = "";
 
-
-
+        //procesar solicitud 
         try {
             let response = await fetch("http://localhost:3000/marca", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({ marca: Infomarca })
+                body: JSON.stringify({ marca: Infomarca }) //enviando info al backend
             });
+            if (!response.ok) {
+                let errorData = await response.json();
+                console.log("Error en el servidor", errorData.code, errorData.message);
+                return;
+            }
 
             let data = await response.json();
 
-            modelo.innerHTML = "<option></option>"; //evita que se seleccione por defecto las opciones que se muestran en la sigui. línea
+            //Por cada modelo de la marca se mostrarán cada uno de ellos
             data.forEach(element => {
-                modelo.innerHTML += `<option>${element.modelo}</option>`;
+                modeloLista.innerHTML += `<option>${element.modelo}</option>`;
             });
 
             modeloInfo = data;
@@ -57,29 +62,36 @@ $(function () {
 
     //segudo evento
     $("#modelo").on("change", async function modeloEvent(event) {
-        let modelo = event.target.options[event.target.selectedIndex].text
-        let modeloSelec = modeloInfo.find((info) => info.modelo === modelo);
-        ul.textContent = "";
+        let modelo = event.target.options[event.target.selectedIndex].text //cargar el texto seleccionado
+        let modeloSelec = modeloInfo.find((info) => info.modelo === modelo);// devuelve el objeto que coincide con el texto seleccionado
 
-
+        //reiniciando lista
+        listaRef.textContent = "";
+        añoLista.textContent = "";
         $("#año").prop("disabled", false);
 
-
+        //Procesando solicitud
         try {
-            let response = await fetch("http://localhost:3000/year", {
+            let response = await fetch("http://localhost:3000/modelo", {
                 method: "post",
                 headers: {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({ id: modeloSelec.id })
             });
+
+            if (!response.ok) {
+                let errorData = await response.json();
+                console.log("Error en el servidor", errorData.message, errorData.error);
+                return;
+            }
+
             let data = await response.json();
 
-            año.innerHTML = `<option></option>`;
-
-
+            //Mostrando todos los años del modelo seleccionado
+            añoLista.innerHTML = `<option><option>`;
             data.forEach(element => {
-                año.innerHTML += `<option>${element.año}</option>`
+                añoLista.innerHTML += `<option>${element.año}</option>`
             })
 
             añoInfo = data
@@ -93,13 +105,13 @@ $(function () {
     })
 
     $("#año").on("change", async function (event) {
-        let año = event.target.options[event.target.selectedIndex].text;
-        let añoSelect = añoInfo.find((info) => info.año == año);
-        console.log(añoSelect);
+        let año = event.target.options[event.target.selectedIndex].text;//cargar el año seleccionado
+        let añoSelect = añoInfo.find((info) => info.año == año);// devuelve el elemento del año seleccionado
 
 
 
 
+        //procesar solicitud
         try {
 
             let response = await fetch("http://localhost:3000/referencia", ({
@@ -110,28 +122,35 @@ $(function () {
                 body: JSON.stringify({ id: añoSelect.id })
             }));
 
+            if (!response.ok) {
+                let errorData = await response.json();
+                console.log("Error en el servidor", errorData.message, errorData.error);
+                return;
+            }
+
             let data = await response.json();
 
+            //a este punto sql solo devuélve un solo arreglo de un solo elemento
+            //las propiedades no siempre tendrán un valor, algunas simplemente es null
+            //por eso se realiza un bucle por cada una de ellas y manejar con un switch las que su valor no son null
             let dataInfo = ["refJointSup", "refJointInf", "refJointInf_izq", "refJointInf_der"];
-
             console.log(data[0][dataInfo[0]]);
 
-            ul.textContent = "";
+            listaRef.textContent = "";
 
             dataInfo.forEach((info) => {
 
                 let li = document.createElement("li");
 
-
-                switch (data[0][info]) {
+                switch (data[0][info]) {//accedo al arreglo en su posición 0 en la propiedad actual
                     case null:
                         break;
 
 
                     default: {
                         li.textContent = data[0][info];
-                        console.log(data[0][info]);
-                        ul.appendChild(li);
+                        //console.log(data[0][info]);
+                        listaRef.appendChild(li);
                         break;
                     }
                 }
