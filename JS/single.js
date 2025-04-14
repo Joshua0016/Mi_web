@@ -48,6 +48,7 @@ $(function () {
                 modeloLista.innerHTML += `<option>${element.modelo}</option>`;
             });
 
+            //cargo la información del modelo para usarla en el siguiente evento "change"
             modeloInfo = data;
 
 
@@ -94,7 +95,9 @@ $(function () {
                 añoLista.innerHTML += `<option>${element.año}</option>`
             })
 
+            //cargo la información del año para poder usarla en el siguiente evento
             añoInfo = data
+
 
         }
         catch (err) {
@@ -108,7 +111,8 @@ $(function () {
         let año = event.target.options[event.target.selectedIndex].text;//cargar el año seleccionado
         let añoSelect = añoInfo.find((info) => info.año == año);// devuelve el elemento del año seleccionado
 
-
+        //reiniciar lista de referencias
+        listaRef.textContent = "";
 
 
         //procesar solicitud
@@ -131,12 +135,13 @@ $(function () {
             let data = await response.json();
 
             //a este punto sql solo devuélve un solo arreglo de un solo elemento
-            //las propiedades no siempre tendrán un valor, algunas simplemente es null
+            //las propiedades del objeto no siempre tendrán un valor, algunas simplemente es null
             //por eso se realiza un bucle por cada una de ellas y manejar con un switch las que su valor no son null
-            let dataInfo = ["refJointSup", "refJointInf", "refJointInf_izq", "refJointInf_der"];
-            console.log(data[0][dataInfo[0]]);
 
-            listaRef.textContent = "";
+            //propiedades del objeto
+            let dataInfo = ["refJointSup", "refJointInf", "refJointInf_izq", "refJointInf_der"];
+
+
 
             dataInfo.forEach((info) => {
 
