@@ -28,7 +28,7 @@ conexion.connect((err) => {
 app.post("/marca", (req, res) => {
     let marca = req.body.marca;
 
-    conexion.query(`select * from vehiculos where marca = '${marca}'`, (err, response) => {
+    conexion.query(`select * from marcas where nombre = '${marca}'`, (err, response) => {
         if (err) {
             console.log("error en la consulta", err);
             return res.status(500).json({
@@ -45,7 +45,7 @@ app.post("/marca", (req, res) => {
 app.post("/modelo", (req, res) => {
     let id = req.body.id;
 
-    conexion.query(`select modelosaños.año, modelosaños.id from vehiculos left join modelosaños on modelosaños.modeloID = vehiculos.id where modelosaños.modeloID = ${id};`, (err, response) => {
+    conexion.query(`select modelos_años.año, modelos_años.id from marcas left join modelos_años on modelos_años.modelo_id = marcas.id where modelos_años.modelo_id = ${id};`, (err, response) => {
         if (err) {
             console.log("error al realizar la consulta", err);
 
@@ -61,7 +61,7 @@ app.post("/modelo", (req, res) => {
 
 app.post("/referencia", (req, res) => {
     let id = req.body.id;
-    conexion.query(`select * from balljoints b left join modelosaños on modelosaños.id = b.añoID where modelosaños.id = ${id};`, (err, response) => {
+    conexion.query(`select * from balljoints b left join modelos_años on modelos_años.id = b.añoID where modelos_años.id = ${id};`, (err, response) => {
         if (err) {
             console.log("error al realizar la consulta", err);
 
