@@ -1,0 +1,2 @@
+FROM mysql
+COPY suspensionDB.sql /docker-entrypoint-initdb.d/

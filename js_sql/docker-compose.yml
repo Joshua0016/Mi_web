@@ -1,0 +1,17 @@
+version: "3.9"
+services:
+  webcontainer:
+    build:
+      context: ../
+      dockerfile: ./js_sql/dockerfile.node
+    ports:
+      - "3000:3000"
+
+  my_sql:
+    ports:
+      - "3307:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+    build:
+      context: .
+      dockerfile: dockerfile.mysql

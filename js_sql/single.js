@@ -25,6 +25,7 @@ $(function () {
         //reiniciar listas
         listaRef.textContent = "";
         añoLista.textContent = "";
+        modeloLista.textContent = "";
 
         //procesar solicitud 
         try {
@@ -44,6 +45,7 @@ $(function () {
             let data = await response.json();
 
             //Por cada modelo de la marca se mostrarán cada uno de ellos
+            modeloLista.innerHTML = '<option></option>'
             data.forEach(element => {
                 modeloLista.innerHTML += `<option>${element.modelo}</option>`;
             });
