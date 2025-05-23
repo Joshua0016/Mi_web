@@ -1,10 +1,10 @@
 $(function () {
     const modeloLista = document.getElementById("modelo");
-    const añoLista = document.getElementById("año");
+    const anioLista = document.getElementById("anio");
     const listaRef = document.getElementById("listaRef");
 
     let modeloInfo = null;
-    let añoInfo = null;
+    let anioInfo = null;
     $("#marca").select2({
         placeholder: "Marca",
         theme: "classic"
@@ -13,7 +13,7 @@ $(function () {
         placeholder: "modelo",
         theme: "classic"
     });
-    $("#año").select2({
+    $("#anio").select2({
         placeholder: "año",
         theme: "classic"
     });
@@ -24,7 +24,7 @@ $(function () {
         $("#modelo").prop("disabled", false);
         //reiniciar listas
         listaRef.textContent = "";
-        añoLista.textContent = "";
+        anioLista.textContent = "";
         modeloLista.textContent = "";
 
         //procesar solicitud 
@@ -70,8 +70,8 @@ $(function () {
 
         //reiniciando lista
         listaRef.textContent = "";
-        añoLista.textContent = "";
-        $("#año").prop("disabled", false);
+        anioLista.textContent = "";
+        $("#anio").prop("disabled", false);
 
         //Procesando solicitud
         try {
@@ -91,14 +91,14 @@ $(function () {
 
             let data = await response.json();
 
-            //Mostrando todos los años del modelo seleccionado
-            añoLista.innerHTML = `<option><option>`;
+            //Mostrando todos los anios del modelo seleccionado
+            anioLista.innerHTML = `<option><option>`;
             data.forEach(element => {
-                añoLista.innerHTML += `<option>${element.año}</option>`
+                anioLista.innerHTML += `<option>${element.anio}</option>`
             })
 
-            //cargo la información del año para poder usarla en el siguiente evento
-            añoInfo = data
+            //cargo la información del anio para poder usarla en el siguiente evento
+            anioInfo = data
 
 
         }
@@ -109,9 +109,9 @@ $(function () {
 
     })
 
-    $("#año").on("change", async function (event) {
-        let año = event.target.options[event.target.selectedIndex].text;//cargar el año seleccionado
-        let añoSelect = añoInfo.find((info) => info.año == año);// devuelve el elemento del año seleccionado
+    $("#anio").on("change", async function (event) {
+        let anio = event.target.options[event.target.selectedIndex].text;//cargar el anio seleccionado
+        let anioselect = anioInfo.find((info) => info.anio == anio);// devuelve el elemento del anio seleccionado
 
         //reiniciar lista de referencias
         listaRef.textContent = "";
@@ -125,7 +125,7 @@ $(function () {
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({ id: añoSelect.id })
+                body: JSON.stringify({ id: anioselect.id })
             }));
 
             if (!response.ok) {
